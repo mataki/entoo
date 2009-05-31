@@ -1,0 +1,16 @@
+application: entsuu
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /
+  script: info.py
+
+- url: /entries.*
+  script: entry.py
+  login: required
+
+- url: /check
+  script: check.py
+  login: admin

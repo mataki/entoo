@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>えんつう</title>
+  </head>
+  <body>
+    <ul>
+      {% for entry in entries %}
+      <li>
+        <span class="key"><a href="/entries?key={{entry.key}}">{{ entry.key }}</a></span>
+        <span class="created_at">{{ entry.created_at }}</span>
+        <span class="user">{{ entry.user.nickname }}</span>
+        <span class="target">{{ entry.target|escape }}</span>
+        <span class="email">{{ entry.email|escape }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+    <form action="/entries" method="post">
+      <p>target: <input type="text" name="target" /></p>
+      <p>email:<input type="text" name="email" /></p>
+      <p><input type="submit" value="Entry" /></p>
+    </form>
+  </body>
+</html>

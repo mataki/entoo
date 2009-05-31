@@ -1,0 +1,15 @@
+<html>
+  <head>
+    <title>えんつう</title>
+  </head>
+  <body>
+    <p class="key"><a href="/entries?key={{entry.key}}">{{ entry.key }}</a></p>
+    <p class="user">{{ entry.user.nickname }}</p>
+    <p class="created_at">{{ entry.created_at }}</p>
+    <p class="user">{{ entry.user.nickname }}</p>
+    <p class="target">{{ entry.target|escape }}</p>
+    <p class="email">{{ entry.email|escape }}</p>
+
+    <p><a href="/entries">Back</a></p>
+  </body>
+</html>
