@@ -3,13 +3,14 @@
     <title>えんつう</title>
   </head>
   <body>
-    <p class="key"><a href="/entries?key={{entry.key}}">{{ entry.key }}</a></p>
-    <p class="user">{{ entry.user.nickname }}</p>
-    <p class="created_at">{{ entry.created_at }}</p>
-    <p class="user">{{ entry.user.nickname }}</p>
-    <p class="target">{{ entry.target|escape }}</p>
-    <p class="email">{{ entry.email|escape }}</p>
-
+    <p class="key">key:<a href="/entries?key={{entry.key}}">{{ entry.key }}</a></p>
+    <p class="created_at">created_at:{{ entry.created_at }}</p>
+    <p class="user">user:{{ entry.user.nickname }}</p>
+    <form action="/entries?key={{entry.key}}" method="post">
+      <p class="target">target:<input type="text" name="target" value="{{entry.target}}"></p>
+      <p class="email">email:<input type="text" name="email" value="{{entry.email}}"></p>
+      <p><input type="submit" value="Entry" /></p>
+    </form>
     <p><a href="/entries">Back</a></p>
   </body>
 </html>
