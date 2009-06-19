@@ -3,14 +3,24 @@
     <title>えんつう</title>
   </head>
   <body>
-    <p class="key">key:<a href="/entries?key={{entry.key}}">{{ entry.key }}</a></p>
-    <p class="created_at">created_at:{{ entry.created_at }}</p>
-    <p class="user">user:{{ entry.user.nickname }}</p>
-    <form action="/entries?key={{entry.key}}" method="post">
-      <p class="target">target:<input type="text" name="target" value="{{entry.target}}"></p>
-      <p class="email">email:<input type="text" name="email" value="{{entry.email}}"></p>
-      <p><input type="submit" value="Entry" /></p>
-    </form>
-    <p><a href="/entries">Back</a></p>
+    <div id="header">
+      <span id="logo">えんつう</span>
+      <a href="{{logout_url}}">ログアウト</a>
+    </div>
+
+    <div id="message">{{ message }}</div>
+
+    <div id="detail">
+<!--       <p class="key">key:<a href="/entries?key={{entry.key}}">{{ entry.key }}</a></p> -->
+<!--       <p class="created_at">作成日時:{{ entry.created_at }}</p> -->
+<!--       <p class="user">作成者:{{ entry.user.nickname }}</p> -->
+      <form action="/entries?key={{entry.key}}" method="post">
+        <p class="target">対象路線:<input type="text" name="target" value="{{entry.target}}"></p>
+        <p class="email">メールアドレス:<input type="text" name="email" value="{{entry.email}}"></p>
+        <p><input type="submit" value="変更" /></p>
+      </form>
+    </div>
+
+    <p><a href="/entries">戻る</a></p>
   </body>
 </html>

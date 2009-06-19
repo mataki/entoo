@@ -4,23 +4,33 @@
   </head>
   <body>
     <div id="header">
-      <a href="{{logout_url}}">sign out</a>
+      <span id="logo">えんつう</span>
+      <a href="{{logout_url}}">ログアウト</a>
     </div>
-    <ul>
+    <h3>登録された遅延連絡</h3>
+    <table>
+      <tr>
+<!--         <th>key</th> -->
+<!--         <th>作成日時</th> -->
+<!--         <th>作成者</th> -->
+        <th>対象路線</th>
+        <th>メールアドレス</th>
+      <tr>
       {% for entry in entries %}
-      <li>
-        <span class="key"><a href="/entries?key={{entry.key}}">{{ entry.key }}</a></span>
-        <span class="created_at">{{ entry.created_at }}</span>
-        <span class="user">{{ entry.user.nickname }}</span>
-        <span class="target">{{ entry.target|escape }}</span>
-        <span class="email">{{ entry.email|escape }}</span>
-      </li>
+      <tr>
+<!--         <td class="key"><a href="/entries?key={{entry.key}}">{{ entry.key }}</a></td> -->
+<!--         <td class="created_at">{{ entry.created_at }}</td> -->
+<!--         <td class="user">{{ entry.user.nickname }}</td> -->
+        <td class="target"><a href="/entries?key={{entry.key}}">{{ entry.target|escape }}</a></td>
+        <td class="email">{{ entry.email|escape }}</td>
+      </tr>
       {% endfor %}
-    </ul>
+    </table>
+    <h3>遅延連絡の登録</h3>
     <form action="/entries" method="post">
-      <p>target: <input type="text" name="target" /></p>
-      <p>email:<input type="text" name="email" /></p>
-      <p><input type="submit" value="Entry" /></p>
+      <p>対象路線: <input type="text" name="target" /></p>
+      <p>メールアドレス:<input type="text" name="email" /></p>
+      <p><input type="submit" value="登録" /></p>
     </form>
   </body>
 </html>
