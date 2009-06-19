@@ -17,20 +17,29 @@ class EntriesHandler(webapp.RequestHandler):
     key = self.request.get('key')
     if key:
       entry = Entry.get(key)
-      self.response.out.write(template.render('show.html',{'entry':entry}))
+      if entry and entry.user == users.get_current_user():
+        self.response.out.write(template.render('show.html',{'entry':entry}))
+      else:
+        self.response.out.write("NOT FOUND")
     else:
-      entries = Entry.all()
-      self.response.out.write(template.render('index.html',{'entries':entries}))
+      q = Entry.all().filter("user =",users.get_current_user()).order('-created_at')
+      entries = q.fetch(20)
+
+      self.response.out.write(template.render('index.html',{'entries':entries, 'logout_url':users.create_logout_url('/')}))
 
   def post(self):
     key = self.request.get('key')
     if key:
       entry = Entry.get(key)
-      entry.target = self.request.get('target')
-      entry.email = self.request.get('email')
-      entry.put()
+      if entry and entry.user == users.get_current_user():
+        entry = Entry.get(key)
+        entry.target = self.request.get('target')
+        entry.email = self.request.get('email')
+        entry.put()
 
-      self.redirect("/entries?key=%s" % key)
+        self.redirect("/entries?key=%s" % key)
+      else:
+        self.response.out.write("NOT FOUND")
     else:
       entry = Entry()
       entry.user =  users.get_current_user()
