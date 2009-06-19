@@ -6,6 +6,8 @@ from google.appengine.ext.webapp import template
 from google.appengine.api import urlfetch
 from xml.etree.ElementTree import fromstring
 
+from google.appengine.api import mail
+
 class Entry(db.Model):
   target = db.StringProperty()
   created_at = db.DateTimeProperty(auto_now_add=True)
@@ -26,6 +28,13 @@ class CheckHandler(webapp.RequestHandler):
       for entry in entries:
         if text.find(entry.target.encode('utf-8')) > -1:
           send_obj.append({'entry':entry, 'tweet':text})
+
+    for s in send_obj:
+      mail.send_mail(sender = 'matsumura.aki+entoo@gmail.com',
+                     to = s['entry'].email,
+                     subject = 'Entoo %s' % s['entry'].target,
+                     body = s['tweet'],
+                     )
 
     self.response.out.write(template.render('check.html',{'send_obj':send_obj}))
 
