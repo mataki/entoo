@@ -6,6 +6,22 @@ from google.appengine.ext import db
 from google.appengine.ext.webapp import template
 from google.appengine.api import users
 
+class RequestHandlerMetaclass(type):
+    def __init__(cls, name, bases, dct):
+        super(RequestHandlerMetaclass, cls).__init__(name, bases, dct)
+        org_post = getattr(cls, 'post')
+        def post(self, *params, **kws):
+            verb = self.request.get('_method')
+            if verb:
+                verb = verb.upper()
+                if verb ==  'DELETE':
+                    self.delete(*params, **kws)
+                elif verb == 'PUT':
+                    self.put(*params, **kws)
+            else:
+                org_post(self, *params, **kws)
+        setattr(cls, 'post', post)
+
 class Entry(db.Model):
   target = db.StringProperty()
   created_at = db.DateTimeProperty(auto_now_add=True)
@@ -13,6 +29,7 @@ class Entry(db.Model):
   user = db.UserProperty()
 
 class EntriesHandler(webapp.RequestHandler):
+  __metaclass__ = RequestHandlerMetaclass
   def get(self):
     key = self.request.get('key')
     if key:
@@ -29,6 +46,7 @@ class EntriesHandler(webapp.RequestHandler):
 
   def post(self):
     key = self.request.get('key')
+# change put method
     if key:
       entry = Entry.get(key)
       if entry and entry.user == users.get_current_user():
@@ -48,6 +66,20 @@ class EntriesHandler(webapp.RequestHandler):
       entry.put()
 
       self.redirect('/entries')
+
+  def delete(self):
+    key = self.request.get('key')
+    if key:
+      entry = Entry.get(key)
+      if entry and entry.user == users.get_current_user():
+        entry.delete()
+        self.redirect('/entries')
+      else:
+        self.response.out.write("NOT FOUND")
+    else:
+      self.response.out.write("NOT FOUND")
+
+
 
 application = webapp.WSGIApplication([('/entries', EntriesHandler)],
                                      debug=True)

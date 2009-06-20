@@ -20,6 +20,12 @@
         <p><input type="submit" value="変更" /></p>
       </form>
     </div>
+    <form action="/entries?key={{entry.key}}" method="post">
+      <div class="invisible">
+        <input type="hidden" name="_method" value="delete">
+      </div>
+      <p><input type="submit" value="削除" /></p>
+    </form>
 
     <p><a href="/entries">戻る</a></p>
   </body>
