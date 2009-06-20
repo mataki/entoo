@@ -30,17 +30,22 @@
           <h2 class="title">登録された遅延連絡先</h2>
           <p class="date">&nbsp;</p>
           <div class="entry">
+            <p>現在、あなたの登録している連絡先を表示しています。</p>
             <table>
-              <tr>
-                <th>対象路線</th>
-                <th>メールアドレス</th>
-              </tr>
-              {% for entry in entries %}
-              <tr>
-                <td class="target"><a href="/entries?key={{entry.key}}">{{ entry.target|escape }}</a></td>
-                <td class="email">{{ entry.email|escape }}</td>
-              </tr>
-              {% endfor %}
+              <thead>
+                <tr>
+                  <th>対象路線</th>
+                  <th>メールアドレス</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for entry in entries %}
+                <tr>
+                  <td class="target"><a href="/entries?key={{entry.key}}">{{ entry.target|escape }}</a></td>
+                  <td class="email">{{ entry.email|escape }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
             </table>
           </div>
           <div class="meta">
@@ -51,10 +56,11 @@
           <h2 class="title">遅延連絡先の登録</h2>
           <p class="date">&nbsp;</p>
           <div class="entry">
+            <p>新しく連絡が欲しい路線を登録する場合は以下のフォームを入力してください。</p>
             <form action="/entries" method="post">
-              <p>対象路線: <input type="text" name="target" /></p>
-              <p>メールアドレス:<input type="text" name="email" /></p>
-              <p><input type="submit" value="登録" /></p>
+              <label>対象路線<span class="small">メール送信する路線名を入力してください</span></label><input type="text" name="target" />
+              <label>メールアドレス<span class="small">送信するメールアドレスを入力してください</span></label><input type="text" name="email" />
+              <input type="submit" value="登録" />
             </form>
           </div>
           <div class="meta">

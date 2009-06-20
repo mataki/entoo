@@ -30,20 +30,21 @@
           <h2 class="title">登録された遅延連絡先</h2>
           <p class="date">&nbsp;</p>
           <div class="entry">
+            <p>以下のフォームの内容を変更すると登録している情報を更新できます。</p>
             <form action="/entries?key={{entry.key}}" method="post">
-              <p class="target">対象路線:<input type="text" name="target" value="{{entry.target}}" /></p>
-              <p class="email">メールアドレス:<input type="text" name="email" value="{{entry.email}}" /></p>
-              <p><input type="submit" value="変更" /></p>
+              <label>対象路線<span class="small">メール送信する路線名を入力してください</span></label><input type="text" name="target" value="{{entry.target}}" />
+              <label>メールアドレス<span class="small">送信するメールアドレスを入力してください</span></label><input type="text" name="email" value="{{entry.email}}" />
+              <input type="submit" value="更新" />
             </form>
+
+            <p>現在登録している連絡先を削除するには以下のボタンをクリックしてください。</p>
             <form action="/entries?key={{entry.key}}" method="post">
-              <div class="invisible">
-                <input type="hidden" name="_method" value="delete"/>
-              </div>
-              <p><input type="submit" value="削除" /></p>
+              <input type="hidden" name="_method" value="delete"/>
+              <input type="submit" value="削除" />
             </form>
           </div>
           <div class="meta">
-            <p><a href="/entries">戻る</a></p>
+            <p class="links"><a href="/entries" class="more">戻る</a></p>
           </div>
         </div>
 
