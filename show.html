@@ -1,32 +1,79 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <title>えんつう</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Entoo</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href="stylesheets/default.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
+    <!-- start header -->
     <div id="header">
-      <span id="logo">えんつう</span>
-      <a href="{{logout_url}}">ログアウト</a>
-    </div>
-
-    <div id="message">{{ message }}</div>
-
-    <div id="detail">
-<!--       <p class="key">key:<a href="/entries?key={{entry.key}}">{{ entry.key }}</a></p> -->
-<!--       <p class="created_at">作成日時:{{ entry.created_at }}</p> -->
-<!--       <p class="user">作成者:{{ entry.user.nickname }}</p> -->
-      <form action="/entries?key={{entry.key}}" method="post">
-        <p class="target">対象路線:<input type="text" name="target" value="{{entry.target}}"></p>
-        <p class="email">メールアドレス:<input type="text" name="email" value="{{entry.email}}"></p>
-        <p><input type="submit" value="変更" /></p>
-      </form>
-    </div>
-    <form action="/entries?key={{entry.key}}" method="post">
-      <div class="invisible">
-        <input type="hidden" name="_method" value="delete">
+      <div id="logo">
+        <h1><a href="/entries">Entoo</a></h1>
+        <h2>Designed by <a href="http://www.freecsstemplates.org/" target="_blank">FreeCSSTemplates</a></h2>
       </div>
-      <p><input type="submit" value="削除" /></p>
-    </form>
+      <div id="menu">
+        <ul>
+          <li><a href="{{logout_url}}">ログアウト</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- end header -->
 
-    <p><a href="/entries">戻る</a></p>
+    <!-- start page -->
+    <div id="page">
+      <!-- start content -->
+      <div id="content">
+        <div class="post">
+          <h2 class="title">登録された遅延連絡先</h2>
+          <p class="date">&nbsp;</p>
+          <div class="entry">
+            <form action="/entries?key={{entry.key}}" method="post">
+              <p class="target">対象路線:<input type="text" name="target" value="{{entry.target}}" /></p>
+              <p class="email">メールアドレス:<input type="text" name="email" value="{{entry.email}}" /></p>
+              <p><input type="submit" value="変更" /></p>
+            </form>
+            <form action="/entries?key={{entry.key}}" method="post">
+              <div class="invisible">
+                <input type="hidden" name="_method" value="delete"/>
+              </div>
+              <p><input type="submit" value="削除" /></p>
+            </form>
+          </div>
+          <div class="meta">
+            <p><a href="/entries">戻る</a></p>
+          </div>
+        </div>
+
+      </div>
+      <!-- end content -->
+      <!-- start sidebar -->
+      <div id="sidebar">
+        <ul>
+          <li>
+            <h2><strong>作者</strong></h2>
+            <ul>
+              <li>mat_aki</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!-- end sidebar -->
+      <div style="clear: both;">&nbsp;</div>
+    </div>
+    <!-- end page -->
+    <!-- start footer -->
+    <div id="footer">
+      <div id="footer-menu">
+        <ul>
+          <li class="active"><a href="#">このサイトについて</a></li>
+        </ul>
+      </div>
+      <p id="legal">(c) 2008 mat-aki. Design by <a href="http://www.freecsstemplates.org/" target="_blank">Free CSS Templates</a>.</p>
+    </div>
+    <!-- end footer -->
   </body>
 </html>
+
