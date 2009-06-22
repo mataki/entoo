@@ -6,7 +6,12 @@ class InfoHandler(webapp.RequestHandler):
   def get(self):
     self.response.out.write(template.render('info.html', {}))
 
-application = webapp.WSGIApplication([('/', InfoHandler)],
+class AboutHandler(webapp.RequestHandler):
+  def get(self):
+    self.response.out.write(template.render('about.html', {}))
+
+application = webapp.WSGIApplication([('/', InfoHandler),
+                                      ('/about', AboutHandler)],
                                      debug=True)
 
 def main():

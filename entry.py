@@ -35,7 +35,7 @@ class EntriesHandler(webapp.RequestHandler):
     if key:
       entry = Entry.get(key)
       if entry and entry.user == users.get_current_user():
-        self.response.out.write(template.render('show.html',{'entry':entry}))
+        self.response.out.write(template.render('show.html',{'entry':entry, 'logout_url':users.create_logout_url('/')}))
       else:
         self.response.out.write("NOT FOUND")
     else:

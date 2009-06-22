@@ -467,13 +467,18 @@ html>body #footer {
         color: #0094E0;
 }
 
+#powered-by {
+        float: right;
+        margin-right: 80px;
+}
+
 #footer-menu {
-        float: left;
         color: #353535;
         text-transform: capitalize;
 }
 
 #footer-menu ul {
+        float: left;
         margin: 0;
         padding: 0;
         list-style: none;
@@ -497,6 +502,7 @@ html>body #footer {
 }
 
 #footer-menu .active a {
-        padding-left: 0;
+        float: right;
 }
+
 

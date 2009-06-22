@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Entoo</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <LINK REL="SHORTCUT ICON" HREF="/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link href="stylesheets/default.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <!-- start header -->
+    <div id="header">
+      <div id="logo">
+        <h1><a href="/entries">Entoo</a></h1>
+        <h2>Designed by <a href="http://www.freecsstemplates.org/" target="_blank">FreeCSSTemplates</a></h2>
+      </div>
+      <div id="menu">
+        <ul>
+          {% block topmenu %}
+          {% endblock %}
+        </ul>
+      </div>
+    </div>
+    <!-- end header -->
+
+    <!-- start page -->
+    <div id="page">
+      <!-- start content -->
+      {% block content %}
+      {% endblock %}
+      <!-- end content -->
+      <!-- start sidebar -->
+<!--       <div id="sidebar"> -->
+<!--         <ul> -->
+<!--           <li> -->
+<!--             <h2><strong>作者</strong></h2> -->
+<!--             <ul> -->
+<!--               <li>mat_aki</li> -->
+<!--             </ul> -->
+<!--           </li> -->
+<!--         </ul> -->
+<!--       </div> -->
+      <!-- end sidebar -->
+      <div style="clear: both;">&nbsp;</div>
+    </div>
+    <!-- end page -->
+    <!-- start footer -->
+    <div id="footer">
+      <div id="footer-menu">
+        <ul>
+          <li class="active"><a href="#">このサイトについて</a></li>
+        </ul>
+      </div>
+      <div id="powered-by"><a href="http://code.google.com/appengine/"><img class="right" alt="Powered by Google App Engine" src="http://code.google.com/appengine/images/appengine-noborder-120x30.gif"/></a></div>
+      <p id="legal">(c) 2008 mat-aki. Design by <a href="http://www.freecsstemplates.org/" target="_blank">Free CSS Templates</a>.</p>
+
+    </div>
+    <!-- end footer -->
+  </body>
+</html>

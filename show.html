@@ -1,80 +1,34 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>Entoo</title>
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
-    <link href="stylesheets/default.css" rel="stylesheet" type="text/css" />
-  </head>
-  <body>
-    <!-- start header -->
-    <div id="header">
-      <div id="logo">
-        <h1><a href="/entries">Entoo</a></h1>
-        <h2>Designed by <a href="http://www.freecsstemplates.org/" target="_blank">FreeCSSTemplates</a></h2>
-      </div>
-      <div id="menu">
-        <ul>
-          <li><a href="{{logout_url}}">ログアウト</a></li>
-        </ul>
-      </div>
+{% extends "base.html" %}
+
+{% block topmenu %}
+<li><a href="{{logout_url}}">ログアウト</a></li>
+{% endblock %}
+
+{% block content %}
+<!-- start content -->
+<div id="content">
+  <div class="post">
+    <h2 class="title">登録された遅延連絡先</h2>
+    <p class="date">&nbsp;</p>
+    <div class="entry">
+      <p>以下のフォームの内容を変更すると登録している情報を更新できます。</p>
+      <form action="/entries?key={{entry.key}}" method="post">
+        <label>対象路線<span class="small">メール送信する路線名を入力してください</span></label><input type="text" name="target" value="{{entry.target}}" />
+        <label>メールアドレス<span class="small">送信するメールアドレスを入力してください</span></label><input type="text" name="email" value="{{entry.email}}" />
+        <input type="submit" value="更新" />
+      </form>
+
+      <p>現在登録している連絡先を削除するには以下のボタンをクリックしてください。</p>
+      <form action="/entries?key={{entry.key}}" method="post">
+        <input type="hidden" name="_method" value="delete"/>
+        <input type="submit" value="削除" />
+      </form>
     </div>
-    <!-- end header -->
-
-    <!-- start page -->
-    <div id="page">
-      <!-- start content -->
-      <div id="content">
-        <div class="post">
-          <h2 class="title">登録された遅延連絡先</h2>
-          <p class="date">&nbsp;</p>
-          <div class="entry">
-            <p>以下のフォームの内容を変更すると登録している情報を更新できます。</p>
-            <form action="/entries?key={{entry.key}}" method="post">
-              <label>対象路線<span class="small">メール送信する路線名を入力してください</span></label><input type="text" name="target" value="{{entry.target}}" />
-              <label>メールアドレス<span class="small">送信するメールアドレスを入力してください</span></label><input type="text" name="email" value="{{entry.email}}" />
-              <input type="submit" value="更新" />
-            </form>
-
-            <p>現在登録している連絡先を削除するには以下のボタンをクリックしてください。</p>
-            <form action="/entries?key={{entry.key}}" method="post">
-              <input type="hidden" name="_method" value="delete"/>
-              <input type="submit" value="削除" />
-            </form>
-          </div>
-          <div class="meta">
-            <p class="links"><a href="/entries" class="more">戻る</a></p>
-          </div>
-        </div>
-
-      </div>
-      <!-- end content -->
-      <!-- start sidebar -->
-      <div id="sidebar">
-        <ul>
-          <li>
-            <h2><strong>作者</strong></h2>
-            <ul>
-              <li>mat_aki</li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-      <!-- end sidebar -->
-      <div style="clear: both;">&nbsp;</div>
+    <div class="meta">
+      <p class="links"><a href="/entries" class="more">戻る</a></p>
     </div>
-    <!-- end page -->
-    <!-- start footer -->
-    <div id="footer">
-      <div id="footer-menu">
-        <ul>
-          <li class="active"><a href="#">このサイトについて</a></li>
-        </ul>
-      </div>
-      <p id="legal">(c) 2008 mat-aki. Design by <a href="http://www.freecsstemplates.org/" target="_blank">Free CSS Templates</a>.</p>
-    </div>
-    <!-- end footer -->
-  </body>
-</html>
+  </div>
 
+</div>
+<!-- end content -->
+{% endblock %}
