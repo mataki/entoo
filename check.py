@@ -36,7 +36,7 @@ class CheckHandler(webapp.RequestHandler):
           body = body + t + '\n\n'
       if body and 0 < len(body.strip()):
         bodys.append(body)
-        mail.send_mail('entoo@mat-aki.net', entry.email, 'Entoo %s' % entry.target, body)
+#        mail.send_mail('entoo@mat-aki.net', entry.email, 'Entoo %s' % entry.target, body)
 
     self.response.out.write(template.render('check.html',{'send_obj':bodys}))
 
