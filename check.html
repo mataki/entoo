@@ -3,11 +3,24 @@
     <title>Entoo</title>
   </head>
   <body>
+    <h2>twits</h2>
     <ul>
-      {% for object in send_obj %}
+      {% for tw in twits %}
+      <li>{{tw}}</li>
+      {% endfor %}
+    </ul>
+    <h2>entry</h2>
+    <ul>
+      {% for entry in entries %}
       <li>
-        <span class="entry">{{ object }}</span>
+        <span class="entry">{{ entry }}</span>
       </li>
+      {% endfor %}
+    </ul>
+    <h2>bodys</h2>
+    <ul>
+      {% for bd in bodys %}
+      <li>{{bd}}</li>
       {% endfor %}
     </ul>
   </body>

@@ -48,7 +48,7 @@ class CheckHandler(webapp.RequestHandler):
                        bcc = 'matsumura.aki+entoo@gmail.com',
                        body = body)
 
-    self.response.out.write(template.render('check.html',{'send_obj':bodys}))
+    self.response.out.write(template.render('check.html',{'entries':entries,'twits':twits,'bodys':bodys}))
 
 application = webapp.WSGIApplication([('/check', CheckHandler)],
                                      debug=True)
