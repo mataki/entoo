@@ -17,6 +17,7 @@
           <tr>
             <th>対象路線</th>
             <th>メールアドレス</th>
+            <th>送信時間</th>
           </tr>
         </thead>
         <tbody>
@@ -24,6 +25,7 @@
           <tr>
             <td class="target"><a href="/entries?key={{entry.key}}">{{ entry.target|escape }}</a></td>
             <td class="email">{{ entry.email|escape }}</td>
+            <td class="target_time">{{ entry.target_time|escape }}</td>
           </tr>
           {% endfor %}
         </tbody>
@@ -41,6 +43,7 @@
       <form action="/entries" method="post">
         <label>対象路線<span class="small">メール送信する路線名を入力してください</span></label><input type="text" name="target" />
         <label>メールアドレス<span class="small">送信するメールアドレスを入力してください</span></label><input type="text" name="email" />
+        <label>送信時間<span class="small">メール送信する時間を入力してください(ex 07:50)</span></label><input type="text" name="target_time" />
         <input type="submit" value="登録" />
       </form>
     </div>

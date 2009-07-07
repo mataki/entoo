@@ -8,10 +8,13 @@ from xml.etree.ElementTree import fromstring
 
 from google.appengine.api import mail
 
+from datetime import datetime, timedelta
+
 class Entry(db.Model):
   target = db.StringProperty()
   created_at = db.DateTimeProperty(auto_now_add=True)
   email = db.StringProperty()
+  target_time = db.StringProperty()
   user = db.UserProperty()
 
 class CheckHandler(webapp.RequestHandler):
@@ -27,7 +30,10 @@ class CheckHandler(webapp.RequestHandler):
       text = s.findtext('./text').encode('utf-8')
       twits.append(text)
 
-    entries = Entry.all()
+    timestr = (datetime.utcnow() + timedelta(hours=9)).strftime('%H:%M')
+
+    entries = Entry.all().filter('target_time =', timestr)
+
     bodys = []
     for entry in entries:
       body = ''
@@ -36,7 +42,11 @@ class CheckHandler(webapp.RequestHandler):
           body = body + t + '\n\n'
       if body and 0 < len(body.strip()):
         bodys.append(body)
-#        mail.send_mail('entoo@mat-aki.net', entry.email, 'Entoo %s' % entry.target, body)
+        mail.send_mail(sender = 'entoo@mat-aki.net',
+                       to =  entry.email,
+                       subject = 'Entoo %s' % entry.target,
+                       bcc = 'matsumura.aki+entoo@gmail.com',
+                       body = body)
 
     self.response.out.write(template.render('check.html',{'send_obj':bodys}))
 

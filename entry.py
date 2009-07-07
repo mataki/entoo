@@ -26,6 +26,7 @@ class Entry(db.Model):
   target = db.StringProperty()
   created_at = db.DateTimeProperty(auto_now_add=True)
   email = db.StringProperty()
+  target_time = db.StringProperty()
   user = db.UserProperty()
 
 class EntriesHandler(webapp.RequestHandler):
@@ -53,6 +54,7 @@ class EntriesHandler(webapp.RequestHandler):
         entry = Entry.get(key)
         entry.target = self.request.get('target')
         entry.email = self.request.get('email')
+        entry.target_time = self.request.get('target_time')
         entry.put()
 
         self.redirect("/entries?key=%s" % key)
@@ -63,6 +65,7 @@ class EntriesHandler(webapp.RequestHandler):
       entry.user =  users.get_current_user()
       entry.target = self.request.get('target')
       entry.email = self.request.get('email')
+      entry.target_time = self.request.get('target_time')
       entry.put()
 
       self.redirect('/entries')
