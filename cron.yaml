@@ -1,1 +1,5 @@
 cron:
+- description: send mail at every weekday morning mail
+  url: /check
+  schedule: every 1 minutes
+  timezone: Asia/Tokyo
